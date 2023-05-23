@@ -1,0 +1,27 @@
+#!/usr/bin/make -f
+
+MAKEFLAGS += --no-print-directory
+
+setup_rust_toolchain:
+	( \
+	  echo 'default_toolchain = "stable-x86_64-unknown-linux-gnu"'; \
+	  echo 'version = "12"' \
+	) > ~/.rustup/settings.toml
+
+override_dh_auto_clean: setup_rust_toolchain
+	$(MAKE) clean
+
+override_dh_dwz:
+
+override_dh_auto_build: setup_rust_toolchain
+	$(MAKE)
+
+override_dh_auto_install:
+	$(MAKE) \
+	  DESTDIR=$$(pwd)/debian/libkrun \
+	  PREFIX=/usr \
+	  LIBDIR_Linux=lib/x86_64-linux-gnu \
+	  install
+
+%:
+	dh $@ --parallel

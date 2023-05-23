@@ -1,0 +1,12 @@
+libkrun (1.5.1) UNRELEASED; urgency=medium
+
+  * Initial release.
+  * Fix CI clippy by @slp in #120
+  * Add a pkgconf file by @rwmjones in #117
+  * examples: Fix error handling of krun_create_ctx by @rwmjones in #118
+  * VSOCK: fix reaper timeout by @blenessy in #115
+  * Fix typo in README.md by @sandrobonazzola in #121
+  * macos: implement host->guest time sync by @slp in #124
+  * Bump version to v1.5.1 by @slp in #125
+
+ -- Christian Blichmann <mail@blichmann.eu>  Sat, 21 May 2023 00:23:54 +0200
