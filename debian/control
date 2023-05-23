@@ -10,7 +10,7 @@ Homepage: https://github.com/google/pawn
 
 Package: libkrun
 Architecture: amd64
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, libkrunfw
 Description: Virtualization-based process isolation library
  libkrun is a dynamic library that allows programs to easily acquire the
  ability to run processes in a partially isolated environment using KVM

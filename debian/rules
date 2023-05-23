@@ -1,6 +1,8 @@
 #!/usr/bin/make -f
 
-MAKEFLAGS += --no-print-directory
+EXTRA_ARGS += DESTDIR=$$(pwd)/debian/libkrun
+EXTRA_ARGS += PREFIX=/usr
+EXTRA_ARGS += LIBDIR_Linux=lib/x86_64-linux-gnu
 
 setup_rust_toolchain:
 	( \
@@ -10,17 +12,15 @@ setup_rust_toolchain:
 
 override_dh_auto_clean: setup_rust_toolchain
 	$(MAKE) clean
+	rm -f libkrun.pc
 
 override_dh_dwz:
 
 override_dh_auto_build: setup_rust_toolchain
-	$(MAKE)
+	$(MAKE) $(EXTRA_ARGS)
 
 override_dh_auto_install:
-	$(MAKE) \
-	  DESTDIR=$$(pwd)/debian/libkrun \
-	  PREFIX=/usr \
-	  LIBDIR_Linux=lib/x86_64-linux-gnu \
+	$(MAKE) $(EXTRA_ARGS) \
 	  install
 
 %:
